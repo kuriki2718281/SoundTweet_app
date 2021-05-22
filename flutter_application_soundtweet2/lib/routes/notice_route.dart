@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../header.dart';
+import '../header/header.dart';
 
 class Notice extends StatelessWidget {
   final String screenName = 'Notice';

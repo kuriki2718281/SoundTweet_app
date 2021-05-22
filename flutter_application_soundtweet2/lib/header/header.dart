@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'header/header_setting.dart';
-import 'header/header_profile.dart';
+import 'header_setting.dart';
+import 'header_profile.dart';
 
 class Header extends StatelessWidget with PreferredSizeWidget {
   final String headerTitle;

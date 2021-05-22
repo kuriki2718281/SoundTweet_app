@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'header.dart';
-import 'root.dart';
+import '../header/header.dart';
+import '../root.dart';
 
 void main() {
   runApp(

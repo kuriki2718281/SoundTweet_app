@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../header.dart';
+import '../header/header.dart';
 
 class Search extends StatelessWidget {
   final String screenName = 'Search';
