@@ -3,6 +3,7 @@ import 'dart:io';
 // import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_soundtweet2/header/profile_Edit/profile_edit.dart';
 import 'header_setting.dart';
 
 class Profile extends StatelessWidget {
@@ -75,11 +76,11 @@ class WidgetA extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Align(
-        alignment: Alignment(0, -0.7),
+        alignment: Alignment(-0.9, -0.7),
         child: CircleAvatar(
-          radius: 60,
+          radius: 55,
           backgroundColor: Colors.white,
-          backgroundImage: AssetImage('images/IMG_8723.jpeg'),
+          backgroundImage: AssetImage('images/IMG_8724.jpeg'),
         ),
       ),
     );
@@ -89,6 +90,19 @@ class WidgetA extends StatelessWidget {
 class WidgetB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center();
+    return Center(
+      child: Align(
+        alignment: Alignment(0.9, -0.5),
+        child: RaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(7),
+            ),
+            child: const Text('Edit'),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => profileedit()));
+            }),
+      ),
+    );
   }
 }
