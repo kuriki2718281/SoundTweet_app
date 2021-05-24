@@ -7,9 +7,9 @@ import 'package:flutter_application_soundtweet2/header/profile_Edit/profile_edit
 import 'header_setting.dart';
 
 class Profile extends StatelessWidget {
-  final String iconImage;
+  // final String iconImage;
 
-  Profile({Key key, @required this.iconImage}) : super(key: key);
+  // Profile({Key key, @required this.iconImage}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,13 +94,14 @@ class WidgetB extends StatelessWidget {
       child: Align(
         alignment: Alignment(0.9, -0.5),
         child: RaisedButton(
+            color: Colors.white60,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(7),
             ),
-            child: const Text('Edit'),
+            child: const Text('Edit Profile'),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => profileedit()));
+                  MaterialPageRoute(builder: (context) => Profileedit()));
             }),
       ),
     );
