@@ -50,8 +50,7 @@ class _UserIcon extends State {
     return Stack(
       children: <Widget>[
         CircleAvatar(
-          backgroundImage:
-              AssetImage('images/71CC5C57-069E-4EB6-A53B-F191AC915EAE.jpg'),
+          backgroundImage: AssetImage('images/IMG_8724.jpeg'),
           radius: 60.0,
         ),
         RawMaterialButton(

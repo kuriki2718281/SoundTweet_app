@@ -7,7 +7,9 @@ class Setting extends StatelessWidget {
       appBar: AppBar(
         title: Text('Setting'),
       ),
-      body: Center(),
+      body: Center(
+        child: Center(),
+      ),
     );
   }
 }
