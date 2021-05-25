@@ -80,6 +80,30 @@ class _ProfileSelectImage extends State<ProfileSelectImage> {
             ),
           ),
           Container(child: _displayInSelectedImage()),
+          Container(
+            child: Align(
+                child: TextField(
+              decoration: InputDecoration(hintText: ' Name'),
+            )),
+          ),
+          Container(
+            child: Align(
+                child: TextField(
+              decoration: InputDecoration(hintText: ' UserName'),
+            )),
+          ),
+          Container(
+            child: Align(
+                child: TextField(
+              decoration: InputDecoration(hintText: ' Bio'),
+            )),
+          ),
+          Container(
+            child: Align(
+                child: TextField(
+              decoration: InputDecoration(hintText: ' Link'),
+            )),
+          ),
         ],
       ),
     );

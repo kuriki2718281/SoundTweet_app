@@ -1,10 +1,10 @@
 import 'dart:io';
 
-// import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_soundtweet2/header/profile_Edit/profile_edit.dart';
 import 'header_setting.dart';
+import 'profile_Edit/profile_edit.dart';
 
 class Profile extends StatelessWidget {
   // final String iconImage;
@@ -72,6 +72,8 @@ class _Profiledetail extends State<Profiledetail> {
 }
 
 class WidgetA extends StatelessWidget {
+  File _image;
+  String image = 'Image';
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -84,6 +86,29 @@ class WidgetA extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _displayInSelectedImage() {
+    if (_image == null) {
+      return Column();
+    } else {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 20, right: 20),
+              child: InkWell(
+                child: Image.asset(
+                  'assets/images/ic_send.png',
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
   }
 }
 
