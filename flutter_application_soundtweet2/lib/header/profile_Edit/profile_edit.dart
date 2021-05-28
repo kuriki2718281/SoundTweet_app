@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
+import '../header_profile.dart';
 
 class Profileedit extends StatelessWidget {
   @override
@@ -19,14 +21,32 @@ class Profileedit extends StatelessWidget {
 }
 
 class ProfileSelectImage extends StatefulWidget {
+  ProfileSelectImage({Key key, this.title}) : super(key: key);
+  final String title;
+
   @override
   _ProfileSelectImage createState() => _ProfileSelectImage();
 }
 
+// class ViewAToBArguments {
+//   final String name;
+//   final String username;
+//   final String bio;
+//   final String link;
+
+//   ViewAToBArguments(this.name, this.username, this.bio, this.link);
+// }
+
 class _ProfileSelectImage extends State<ProfileSelectImage> {
   File _image;
   final picker = ImagePicker();
-
+  final _nameFocusNode = FocusNode();
+  final _form = GlobalKey<FormState>();
+  String _text = '';
+  String name;
+  String username;
+  String bio;
+  String link;
   // 画像の読み込み
   Future _getImage() async {
     //final pickedFile = await picker.getImage(source: ImageSource.camera);//カメラ
@@ -48,7 +68,7 @@ class _ProfileSelectImage extends State<ProfileSelectImage> {
           Container(
               width: 150,
               height: 150,
-              margin: const EdgeInsets.only(top: 25),
+              margin: const EdgeInsets.only(top: 20),
               child: _displaySelectionImageOrGrayImage()),
           Container(
             child: Align(),
@@ -80,30 +100,131 @@ class _ProfileSelectImage extends State<ProfileSelectImage> {
             ),
           ),
           Container(child: _displayInSelectedImage()),
-          Container(
-            child: Align(
-                child: TextField(
-              decoration: InputDecoration(hintText: ' Name'),
-            )),
+          Form(
+            key: _form,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(labelText: ' Name'),
+                  textInputAction: TextInputAction.next,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter your Name.';
+                    }
+                    return null;
+                  },
+                  onFieldSubmitted: (_) {
+                    FocusScope.of(context).requestFocus(_nameFocusNode);
+                  },
+                  onSaved: (value) {
+                    name = value;
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: ' UserName'),
+                  textInputAction: TextInputAction.next,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter your UserName.';
+                    }
+                    return null;
+                  },
+                  // onFieldSubmitted: (_) {
+                  //   FocusScope.of(context).requestFocus(_nameFocusNode);
+                  // },
+                  onSaved: (value) {
+                    username = value;
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: ' Bio'),
+                  textInputAction: TextInputAction.next,
+                  // validator: (value) {
+                  //   if (value.isEmpty) {
+                  //     return 'Please enter your Bio.';
+                  //   }
+                  //   return null;
+                  // },
+                  // onFieldSubmitted: (_) {
+                  //   FocusScope.of(context).requestFocus(_nameFocusNode);
+                  // },
+                  onSaved: (value) {
+                    bio = value;
+                  },
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: ' Link'),
+                  textInputAction: TextInputAction.next,
+                  // validator: (value) {
+                  //   if (value.isEmpty) {
+                  //     return 'Please enter your Link.';
+                  //   }
+                  //   return null;
+                  // },
+                  // onFieldSubmitted: (_) {
+                  //   FocusScope.of(context).requestFocus(_nameFocusNode);
+                  // },
+                  onSaved: (value) {
+                    link = value;
+                  },
+                ),
+                RaisedButton(
+                    child: Text('Done'),
+                    color: Color(0xfffa4269),
+                    shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    onPressed: () {
+                      _form.currentState.save();
+                      if (!_form.currentState.validate()) {
+                        return;
+                      }
+                      Navigator.pop(context, name);
+                      // Navigator.pushReplacementNamed(context, '/next_path',
+                      //     arguments:
+                      //         ViewAToBArguments(name, username, bio, link));
+                    }),
+              ],
+            ),
           ),
-          Container(
-            child: Align(
-                child: TextField(
-              decoration: InputDecoration(hintText: ' UserName'),
-            )),
-          ),
-          Container(
-            child: Align(
-                child: TextField(
-              decoration: InputDecoration(hintText: ' Bio'),
-            )),
-          ),
-          Container(
-            child: Align(
-                child: TextField(
-              decoration: InputDecoration(hintText: ' Link'),
-            )),
-          ),
+          // Container(
+          //   child: Align(
+          //       child: TextField(
+          //     onChanged: (value) {
+          //       print(value);
+          //     },
+          //     decoration: InputDecoration(hintText: ' Name'),
+          //   )
+          //   ),
+          // ),
+          // Container(
+          //   child: Align(
+          //       child: TextField(
+          //     decoration: InputDecoration(hintText: ' UserName'),
+          //   )),
+          // ),
+          // Container(
+          //   child: Align(
+          //       child: TextField(
+          //     decoration: InputDecoration(hintText: ' Bio'),
+          //   )),
+          // ),
+          // Container(
+          //   child: Align(
+          //       child: TextField(
+          //     decoration: InputDecoration(hintText: ' Link'),
+          //   )),
+          // ),
+          // Container(
+          //   child: Align(
+          //     child: RaisedButton(
+          //       child: Text('Done'),
+          //       color: Color(0xfffa4269),
+          //       shape: OutlineInputBorder(
+          //           borderRadius: BorderRadius.all(Radius.circular(10))),
+          //       onPressed: () {},
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

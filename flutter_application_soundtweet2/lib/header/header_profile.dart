@@ -45,6 +45,12 @@ class Profiledetail extends StatefulWidget {
 }
 
 class _Profiledetail extends State<Profiledetail> {
+  // final ViewAToBArguments viewAToBArguments =
+  //     ModalRoute.of(context).settings.arguments;
+  // String name = viewAToBArguments.name;
+  // String username = viewAToBArguments.username;
+  // String bio = viewAToBArguments.bio;
+  // String link = viewAToBArguments.link;
   // File _image;
   // final picker = ImagePicker();
   // Future getImage() async {
@@ -58,14 +64,49 @@ class _Profiledetail extends State<Profiledetail> {
   //     }
   //   });
   // }
-
+  String name = '';
+  String username = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
       children: <Widget>[
         WidgetA(),
-        WidgetB(),
+        Container(
+          margin: EdgeInsets.only(top: 150, left: 250),
+          child: RaisedButton(
+              color: Colors.white60,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7),
+              ),
+              child: const Text('Edit Profile'),
+              onPressed: () async {
+                final result = await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profileedit()));
+                setState(() {
+                  name = result;
+                  // username = result;
+                });
+                print(result);
+              }),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 185, left: 5),
+          child: Text(
+            name,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(
+            top: 220,
+            left: 5,
+          ),
+          child: Text(
+            '@' + username,
+            style: TextStyle(fontSize: 18),
+          ),
+        )
       ],
     ));
   }
@@ -76,13 +117,14 @@ class WidgetA extends StatelessWidget {
   String image = 'Image';
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Align(
-        alignment: Alignment(-0.9, -0.7),
-        child: CircleAvatar(
-          radius: 55,
-          backgroundColor: Colors.white,
-          backgroundImage: AssetImage('images/IMG_8724.jpeg'),
+    return Scaffold(
+      body: Center(
+        child: Align(
+          alignment: Alignment(-0.8, -0.7),
+          child: CircleAvatar(
+              radius: 55,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage('images/IMG_8724.jpeg')),
         ),
       ),
     );
@@ -95,40 +137,74 @@ class WidgetA extends StatelessWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 20, right: 20),
-              child: InkWell(
-                child: Image.asset(
-                  'assets/images/ic_send.png',
+          Container(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 20, right: 20),
+                child: InkWell(
+                  child: Image.asset(
+                    'assets/images/ic_send.png',
+                  ),
                 ),
               ),
             ),
           ),
+          Container(),
         ],
       );
     }
   }
 }
 
-class WidgetB extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Align(
-        alignment: Alignment(0.9, -0.5),
-        child: RaisedButton(
-            color: Colors.white60,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(7),
-            ),
-            child: const Text('Edit Profile'),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Profileedit()));
-            }),
-      ),
-    );
-  }
-}
+// class WidgetAUnder extends StatelessWidget {
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Align(
+//         alignment: Alignment(-0.83, -0.32),
+//         child: FlatButton(
+//           onPressed: () {},
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class WidgetB extends StatefulWidget {
+//   _WidgetB createState() => _WidgetB();
+// }
+
+// class _WidgetB extends State<WidgetB> {
+//   String name = '';
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Column(
+//           children: <Widget>[
+//             Container(
+//               margin: EdgeInsets.only(top: 150, left: 220),
+//               child: RaisedButton(
+//                   color: Colors.white60,
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(7),
+//                   ),
+//                   child: const Text('Edit Profile'),
+//                   onPressed: () async {
+//                     final result = await Navigator.push(context,
+//                         MaterialPageRoute(builder: (context) => Profileedit()));
+//                     // setState(() {
+//                     //   name = result;
+//                     // });
+//                     print(result);
+//                   }),
+//             ),
+//             Container(
+//               child: Text(name),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
