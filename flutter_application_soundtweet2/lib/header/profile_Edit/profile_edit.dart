@@ -37,6 +37,14 @@ class ProfileSelectImage extends StatefulWidget {
 //   ViewAToBArguments(this.name, this.username, this.bio, this.link);
 // }
 
+// class ProfileValue {
+//   ProfileValue({this.name, this.username, this.bio, this.link});
+//   final String name;
+//   final String username;
+//   final String bio;
+//   final String link;
+// }
+
 class _ProfileSelectImage extends State<ProfileSelectImage> {
   File _image;
   final picker = ImagePicker();
@@ -178,7 +186,9 @@ class _ProfileSelectImage extends State<ProfileSelectImage> {
                       if (!_form.currentState.validate()) {
                         return;
                       }
-                      Navigator.pop(context, name);
+                      Navigator.of(context).pop(
+                        name,
+                      );
                       // Navigator.pushReplacementNamed(context, '/next_path',
                       //     arguments:
                       //         ViewAToBArguments(name, username, bio, link));

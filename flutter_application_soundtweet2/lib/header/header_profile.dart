@@ -45,6 +45,18 @@ class Profiledetail extends StatefulWidget {
 }
 
 class _Profiledetail extends State<Profiledetail> {
+  // String name;
+
+  // String username;
+  // String bio;
+  // String link;
+  // _Profiledetail({
+  //   Key key,
+  //   this.name,
+  //   this.username,
+  //   this.bio,
+  //   this.link,
+  // }) : super(key:key);
   // final ViewAToBArguments viewAToBArguments =
   //     ModalRoute.of(context).settings.arguments;
   // String name = viewAToBArguments.name;
@@ -66,6 +78,8 @@ class _Profiledetail extends State<Profiledetail> {
   // }
   String name = '';
   String username = '';
+  // final ProfileValue args = ModalRoute.of(context).settings.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +87,7 @@ class _Profiledetail extends State<Profiledetail> {
       children: <Widget>[
         WidgetA(),
         Container(
-          margin: EdgeInsets.only(top: 150, left: 250),
+          margin: EdgeInsets.only(top: 130, left: 250),
           child: RaisedButton(
               color: Colors.white60,
               shape: RoundedRectangleBorder(
@@ -85,26 +99,42 @@ class _Profiledetail extends State<Profiledetail> {
                     MaterialPageRoute(builder: (context) => Profileedit()));
                 setState(() {
                   name = result;
+
                   // username = result;
                 });
                 print(result);
+                // final result2 = await Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => Profileedit()));
+                // setState(() {
+                //   username = result2;
+                //   // username = result;
+                // });
+                // print(result);
               }),
         ),
         Container(
-          margin: EdgeInsets.only(top: 185, left: 5),
-          child: Text(
-            name,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          child: Center(
+            child: Align(
+              alignment: Alignment(0, -0.34),
+              // child: FittedBox(
+              child: Text(
+                name,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            //),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-            top: 220,
-            left: 5,
-          ),
-          child: Text(
-            '@' + username,
-            style: TextStyle(fontSize: 18),
+          child: Center(
+            child: Align(
+              alignment: Alignment(0, -0.23),
+              child: Text(
+                '@' + username,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
           ),
         )
       ],
@@ -120,7 +150,7 @@ class WidgetA extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Align(
-          alignment: Alignment(-0.8, -0.7),
+          alignment: Alignment(0, -0.7),
           child: CircleAvatar(
               radius: 55,
               backgroundColor: Colors.white,
@@ -128,32 +158,6 @@ class WidgetA extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _displayInSelectedImage() {
-    if (_image == null) {
-      return Column();
-    } else {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Container(
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 20, right: 20),
-                child: InkWell(
-                  child: Image.asset(
-                    'assets/images/ic_send.png',
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Container(),
-        ],
-      );
-    }
   }
 }
 
