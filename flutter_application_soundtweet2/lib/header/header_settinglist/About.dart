@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Account extends StatelessWidget {
+class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account'),
+        title: Text("About SoundTweet"),
       ),
       body: Center(),
     );
