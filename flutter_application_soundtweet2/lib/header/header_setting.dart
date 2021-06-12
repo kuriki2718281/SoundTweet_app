@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_soundtweet2/header/header_settinglist/privacy.dart';
-import 'header_settinglist/privacy.dart';
-import '../header.dart';
+import 'package:flutter_application_soundtweet2/header/header_settinglist/Account.dart';
+import 'package:flutter_application_soundtweet2/header/header_settinglist/Privacy.dart';
+import 'package:flutter_application_soundtweet2/header/header_settinglist/Notification.dart';
+import 'package:flutter_application_soundtweet2/header/header_settinglist/Sound.dart';
+import 'package:flutter_application_soundtweet2/header/header_settinglist/About.dart';
+// import 'header_settinglist/Privacy.dart';
+// import 'header_settinglist/Notification.dart';
 
 class Setting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Privacy"),
+        title: Text(
+          "Setting",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
+      body: Center(
+        child: Settingbody(),
+      ),
+    );
+  }
+}
+
+class Settingbody extends StatefulWidget {
+  @override
+  _Settingbody createState() => _Settingbody();
+}
+
+class _Settingbody extends State<Settingbody> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: Column(
         children: <Widget>[
           Padding(padding: EdgeInsets.only(top: 1)),
@@ -38,7 +61,14 @@ class Widgetprivacy extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Privacysetting(),
+                  ),
+                );
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -62,7 +92,14 @@ class Widgetaccount extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Account(),
+                  ),
+                );
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -86,7 +123,14 @@ class WidgetNotification extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Notificationsetting(),
+                  ),
+                );
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -110,7 +154,14 @@ class Widgetsound extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Sound(),
+                  ),
+                );
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -134,7 +185,14 @@ class Widgetabout extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => About(),
+                  ),
+                );
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
