@@ -128,22 +128,22 @@ class _ProfileSelectImage extends State<ProfileSelectImage> {
                     name = value;
                   },
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: ' UserName'),
-                  textInputAction: TextInputAction.next,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter your UserName.';
-                    }
-                    return null;
-                  },
-                  // onFieldSubmitted: (_) {
-                  //   FocusScope.of(context).requestFocus(_nameFocusNode);
-                  // },
-                  onSaved: (value) {
-                    username = value;
-                  },
-                ),
+                // TextFormField(
+                //   decoration: InputDecoration(labelText: ' UserName'),
+                //   textInputAction: TextInputAction.next,
+                //   validator: (value) {
+                //     if (value.isEmpty) {
+                //       return 'Please enter your UserName.';
+                //     }
+                //     return null;
+                //   },
+                //   // onFieldSubmitted: (_) {
+                //   //   FocusScope.of(context).requestFocus(_nameFocusNode);
+                //   // },
+                //   onSaved: (value) {
+                //     username = value;
+                //   },
+                // ),
                 TextFormField(
                   decoration: InputDecoration(labelText: ' Bio'),
                   textInputAction: TextInputAction.next,
