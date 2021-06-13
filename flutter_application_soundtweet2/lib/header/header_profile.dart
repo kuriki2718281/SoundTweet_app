@@ -126,17 +126,17 @@ class _Profiledetail extends State<Profiledetail> {
             //),
           ),
         ),
-        Container(
-          child: Center(
-            child: Align(
-              alignment: Alignment(0, -0.23),
-              child: Text(
-                '@' + username,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-        )
+        // Container(
+        //   child: Center(
+        //     child: Align(
+        //       alignment: Alignment(0, -0.23),
+        //       child: Text(
+        //         '@' + username,
+        //         style: TextStyle(fontSize: 18),
+        //       ),
+        //     ),
+        //   ),
+        // )
       ],
     ));
   }
