@@ -23,19 +23,95 @@ class NextPagebody extends StatefulWidget {
 }
 
 class _NextPagebodydetail extends State<NextPagebody> {
+  String _tweettext = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
       children: <Widget>[
-        WidgetA(),
-        WidgetB(),
+        Container(
+          padding: EdgeInsets.all(20),
+          child: TextField(
+            keyboardType: TextInputType.multiline,
+            maxLines: 10,
+            minLines: 7,
+            decoration: InputDecoration(
+              labelText: "What a Sound!!!",
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: 2)),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.red,
+                  width: 2,
+                ),
+              ),
+            ),
+            onChanged: (String value) {
+              setState(() {
+                _tweettext = value;
+              });
+            },
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 350),
+          child: Center(
+            child: RaisedButton(
+              color: Colors.blue,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Text("Done"),
+              onPressed: () {
+                Navigator.of(context).pop(_tweettext);
+              },
+            ),
+          ),
+        ),
+        Widgetrecord(),
+        Widgetupload(),
       ],
     ));
   }
 }
 
-class WidgetA extends StatelessWidget {
+// class Widgettweet extends StatelessWidget {
+//   String _tweettext = '';
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Column(
+//         children: <Widget>[
+//           Container(
+//             padding: EdgeInsets.all(20),
+//             child: TextField(
+//               keyboardType: TextInputType.multiline,
+//               maxLines: 10,
+//               minLines: 7,
+//               decoration: InputDecoration(
+//                 labelText: "What a Sound!!!",
+//                 focusedBorder: OutlineInputBorder(
+//                     borderSide: BorderSide(color: Colors.red, width: 2)),
+//                 enabledBorder: OutlineInputBorder(
+//                   borderSide: BorderSide(
+//                     color: Colors.red,
+//                     width: 2,
+//                   ),
+//                 ),
+//               ),
+//               onChanged: (String value) {
+//                 setState(() {
+//                   _tweettext = value;
+//                 });
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+class Widgetrecord extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -61,7 +137,7 @@ class WidgetA extends StatelessWidget {
   }
 }
 
-class WidgetB extends StatelessWidget {
+class Widgetupload extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
