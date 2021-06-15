@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class Notificationsetting extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class _Notificationbody extends State<Notificationbody> {
         children: <Widget>[
           ListTile(
             title: Text("Notification"),
-            trailing: Switch(
+            trailing: CupertinoSwitch(
               value: notificationswitch,
               onChanged: (bool value) {
                 setState(() {
