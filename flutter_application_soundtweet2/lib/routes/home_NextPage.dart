@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'home_NextPage_list_data.dart';
 import 'home_NextPage_deteils.dart';
+import 'package:just_audio/just_audio.dart';
 
 class NextPage extends StatelessWidget {
   @override
@@ -53,6 +54,12 @@ class _NextPagebodydetail extends State<NextPagebody> {
             },
           ),
         ),
+        // Container(
+        //     child: FlatButton(
+        //         onPressed: () {
+        //           Navigator.push(context, MaterialPageRoute(builder: (context)=>()));
+        //         },
+        //         child: Text("record"))),
         Container(
           padding: EdgeInsets.only(top: 350),
           child: Center(
