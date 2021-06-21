@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../header.dart';
 import 'home_NextPage.dart';
+import 'home_route_comment/comment.dart';
+import 'package:like_button/like_button.dart';
 
 // class TodoListPage extends StatefulWidget {
 //   @override
@@ -16,12 +18,50 @@ class _Home extends State<Home> {
   final String screenName = 'Home';
   String _message;
   List<String> tweetList = [];
+  int _favaritecount = 0;
+  // IconData iconData = Icons.favorite_outline;
+  // Color _iconColor = Colors.grey;
+  String comments;
+  final myController = TextEditingController();
+
+  int _counter = 0;
+
+  List<Map<String, dynamic>> items = [];
+
+  void _addItem(String inputtext) {
+    setState(() {
+      _counter++;
+      items.add({"content": inputtext});
+    });
+  }
+
+  @override
+  // widgetの破棄時にコントローラも破棄する
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
     _message = '';
   }
+
+  // void _addCommentText(String inputtext) {
+  //   setState(() {
+  //     comment.add(inputtext);
+  //   });
+  // }
+
+  // void _onPressed() {
+  //   setState(() {
+  //     _favaritecount++;
+  //   });
+  //   iconData = Icons.favorite;
+  //   _iconColor = Colors.pink;
+  //   return;
+  // }
 
   void _setMessage(message) {
     setState(() {
@@ -52,20 +92,176 @@ class _Home extends State<Home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      CupertinoButton(
-                        child: Icon(
-                          Icons.favorite_border,
-                          color: Colors.pinkAccent,
+                      Row(children: <Widget>[
+                        Padding(padding: EdgeInsets.only(left: 15)),
+                        LikeButton(
+                          isLiked: false,
+                          //いずれそれぞれに値を作らせる
+                          likeCount: _favaritecount,
+                          countBuilder: (int count, bool isLiked, String text) {
+                            var color = isLiked ? Colors.pink : Colors.grey;
+                            Widget result;
+                            if (count == 0) {
+                              result = Text(
+                                "",
+                                style: TextStyle(color: color),
+                              );
+                            } else
+                              result = Text(
+                                text,
+                                style: TextStyle(color: color),
+                              );
+                            return result;
+                          },
                         ),
-                        onPressed: () {},
+
+                        // FavoriteButton(
+                        //   iconSize: 10,
+                        //   isFavorite: true,
+                        //   valueChanged: (_isFavorite) {
+                        //     _onPressed();
+                        //   },
+                        // ),
+                        // IconButton(
+                        //     icon: Icon(iconData),
+                        //     color: _iconColor,
+                        //     onPressed: () {
+                        //       _onPressed();
+                        //     }),
+                        // Text("$_favaritecount"),
+                      ]),
+
+                      // CupertinoButton(
+                      //   child: Row(
+                      //     children: <Widget>[
+                      //       Icon(
+                      //         Icons.favorite_outline,
+                      //         color: Colors.grey,
+                      //       ),
+                      //       Text(
+                      //         "$_favaritecount",
+                      //         style: TextStyle(color: Colors.black),
+                      //       )
+                      //     ],
+                      //   ),
+                      //   onPressed: _favaritecount >= 1 ? null : _favorite,
+                      // ),
+                      Row(
+                        children: <Widget>[
+                          CupertinoButton(
+                            child: Icon(
+                              Icons.comment_outlined,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              showBottomSheet<void>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(
+                                    height: 400,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade200,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          topRight: Radius.circular(30)),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                        ),
+                                        Expanded(
+                                          child: ListView.builder(
+                                              scrollDirection: Axis.vertical,
+                                              shrinkWrap: true,
+                                              itemCount: items.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                final item = items[index];
+
+                                                return Card(
+                                                  child: ListTile(
+                                                    leading: Icon(Icons.face),
+                                                    title:
+                                                        Text(item["content"]),
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                        TextField(
+                                          controller: myController,
+                                          cursorColor: Colors.redAccent,
+                                          keyboardType: TextInputType.multiline,
+                                          maxLines: 2,
+                                          minLines: 1,
+                                          decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor: Colors.white,
+                                            labelText: "Reply",
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.red,
+                                                    width: 2),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(30))),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(30)),
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 2,
+                                              ),
+                                            ),
+                                            suffixIcon: IconButton(
+                                              icon: Icon(Icons.reply),
+                                              onPressed: () {
+                                                _addItem(myController.text);
+
+                                                // テキストフィールドの内容をクリアする
+                                                myController.clear();
+                                                // myController.clear();
+                                              },
+                                            ),
+                                          ),
+                                          // onChanged: (String value) {
+                                          //   setState(() {
+                                          //     comments = value;
+                                          //   });
+                                          // },
+                                        ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.all(16),
+                                        // ),
+                                        // Expanded(
+                                        //   child: ListView.builder(
+                                        //     itemCount: comment.length,
+                                        //     itemBuilder: (context, index2) {
+                                        //       return Card();
+                                        //     },
+                                        //   ),
+                                        // )
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => Commentpage(),
+                              //     fullscreenDialog: true,
+                              //   ),
+                              // );
+                            },
+                          ),
+                          Text("$_counter")
+                        ],
                       ),
-                      CupertinoButton(
-                        child: Icon(
-                          Icons.comment_outlined,
-                          color: Colors.grey,
-                        ),
-                        onPressed: () {},
-                      ),
+
                       CupertinoButton(
                         child: Icon(
                           Icons.more_vert,
@@ -122,22 +318,11 @@ class _Home extends State<Home> {
                                           );
                                         },
                                       );
-
-                                      // setState(() {
-                                      //   tweetList.removeLast();
-                                      // });
                                     },
                                   ),
-                                  // CupertinoActionSheetAction(
-                                  //   child: const Text('テスト3'),
-                                  //   onPressed: () {
-                                  //     _setMessage('テスト3');
-                                  //     Navigator.pop(context, 'テスト3');
-                                  //   },
-                                  // ),
                                 ],
                                 cancelButton: CupertinoActionSheetAction(
-                                  child: const Text('キャンセル'),
+                                  child: Text('キャンセル'),
                                   isDefaultAction: true,
                                   onPressed: () {
                                     Navigator.pop(context, 'キャンセル');
@@ -222,7 +407,9 @@ class _Home extends State<Home> {
       //       ),
       //     );
       //   },
+      // resizeToAvoidBottomInset: true,
 
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final tweetText = await Navigator.of(context).push(
@@ -246,6 +433,7 @@ class _Home extends State<Home> {
           color: Colors.white,
         ),
       ),
+
       drawer: Drawer(
         child: Center(
           child: Text('hello'),
